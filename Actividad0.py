@@ -6,15 +6,22 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
-snake_color = (0, 0, 0)
-food_color = (0, 0, 0)
+snake_color = (100, 0, 30)
+food_color = (0, 0, 20)
+
 
 def change_color():
     """Change snake color randomly."""
     global food_color
     global snake_color 
     snake_color = (random(), random(), random()) 
-    food_color = (random(), random(), random()) 
+    food_color = (random(), random(), random())
+
+if snake_color == (255, 0, 0):
+    change_color()       
+if food_color == (255, 0, 0):
+    change_color()  
+        
 
 def change(x, y):
     """Change snake direction."""
