@@ -8,8 +8,8 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
-snake_color = (100, 0, 30)
-food_color = (0, 0, 20)
+snake_color = (100/255, 0/255, 30/255)
+food_color = (0/255, 0/255, 20/255)
 
 
 def change_color():
