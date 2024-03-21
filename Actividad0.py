@@ -1,10 +1,32 @@
 from turtle import *
+
 from random import randrange
+
+from random import random
+
 from freegames import square, vector
 
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
+snake_color = (100, 0, 30)
+food_color = (0, 0, 20)
+
+
+def change_color():
+    """Change snake color randomly."""
+    global food_color
+    global snake_color 
+    snake_color = (random(), random(), random()) 
+    food_color = (random(), random(), random())
+
+
+if snake_color == (255, 0, 0):
+    change_color()       
+if food_color == (255, 0, 0):
+    change_color()  
+        
+
 
 def change(x, y):
     "Change snake direction."
@@ -30,7 +52,7 @@ def move():
     head.move(aim)
 
     if not inside(head) or head in snake:
-        square(head.x, head.y, 9, 'red')
+        square(head.x, head.y, 9, "red")
         update()
         return
 
@@ -38,6 +60,11 @@ def move():
 
     if head == food:
         print('Snake:', len(snake))
+
+        food.x = randrange(-15, 15) * 10
+        food.y = randrange(-15, 15) * 10
+        change_color()
+
     else:
         snake.pop(0)
 
@@ -45,9 +72,9 @@ def move():
     clear()
 
     for body in snake:
-        square(body.x, body.y, 9, 'black')
+        square(body.x, body.y, 9, snake_color)
 
-    square(food.x, food.y, 9, 'green')
+    square(food.x, food.y, 9, food_color)
     update()
     ontimer(move, 100)
 
@@ -59,5 +86,6 @@ onkey(lambda: change(10, 0), 'Right')
 onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
+onkey(change_color, 'c')
 move()
 done()
